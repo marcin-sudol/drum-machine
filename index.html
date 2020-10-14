@@ -32,22 +32,30 @@
 
 <body>
 
-    <!-- <div id="root"></div> -->
+    <main id="app">
+        <div id="drum-machine">
 
+            <p id="display">Playing chord
+            </p>
 
-    <div id="drum-machine">
-
-        <p id="display">
-        </p>
-
-        <div id="buttons">
-            <button type="button" class="drum-pad" id="drum-pad1" value="Q">
-                <audio id="Q">
-                    <source src="https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3" type="audio/mpeg">
-                </audio>
-            </button>
+            <div id="buttons">
+                <button type="button" class="drum-pad" id="drum-pad1" value="Q"
+                    onclick="document.getElementById('Q').play()">
+                    <audio id="Q">
+                        <source src="https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3" type="audio/mpeg">
+                    </audio>
+                </button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="W"></button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="E"></button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="A"></button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="S"></button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="D"></button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="D"></button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="D"></button>
+                <button type="button" class="drum-pad" id="drum-pad1" value="D"></button>
+            </div>
         </div>
-    </div>
+    </main>
 
 
 
