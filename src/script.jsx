@@ -98,6 +98,7 @@ class DrumPad extends React.Component {
                         type="audio/mpeg"
                     />
                 </audio>
+                {this.props.value}
             </button >
         );
     };
