@@ -1,3 +1,51 @@
+// CLIPS
+const clips = [
+    {
+        id: 1,
+        value: "Q",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3"
+    },
+    {
+        id: 2,
+        value: "W",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3"
+    },
+    {
+        id: 3,
+        value: "E",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"
+    },
+    {
+        id: 4,
+        value: "A",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3"
+    },
+    {
+        id: 5,
+        value: "S",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3"
+    },
+    {
+        id: 6,
+        value: "D",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3"
+    },
+    {
+        id: 7,
+        value: "Z",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3"
+    },
+    {
+        id: 8,
+        value: "X",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3"
+    },
+    {
+        id: 9,
+        value: "C",
+        audioSrc: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3"
+    }
+]
 
 
 
@@ -10,7 +58,7 @@ const Display = (props) => {
 
 
 
-
+// DRUM PAD COMPONENT
 class DrumPad extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +74,7 @@ class DrumPad extends React.Component {
     };
 
     play = () => {
-        this.props.onClick(this.props.id);
+        this.props.onClick();
         document.getElementById(this.props.value).play();
     };
 
@@ -51,6 +99,7 @@ class DrumPad extends React.Component {
 
 
 
+// DRUM MACHINE COMPONENT
 class DrumMachine extends React.Component {
     constructor(props) {
         super(props);
@@ -62,24 +111,26 @@ class DrumMachine extends React.Component {
         this.updateDisplay = this.updateDisplay.bind(this);
     };
 
+    static propTypes = {
+        clips: PropTypes.array
+    };
+
     updateDisplay = (id) => {
-        this.setState({ text: "set this" });
+        this.setState({ text: this.props.clips });
     };
 
     render() {
         return (
             <div id="drum-machine">
                 <Display text="Playing chord" />
-
                 <div id="buttons">
-
-                    <DrumPad
-                        id={1}
-                        value="Q"
-                        audioSrc="https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3"
-                        onClick={this.updateDisplay}
-                    />
-
+                    {this.props.clips.map(clip => (
+                        <DrumPad
+                            key={clip.id}
+                            {...clip}
+                            onClick={this.updateDisplay}
+                        />
+                    ))}
                 </div>
             </div>
         );
@@ -88,93 +139,9 @@ class DrumMachine extends React.Component {
 
 
 
-// // ----- CLASS COMPONENT -----
-// class MyComponent extends React.Component {
-//     constructor(props) {
-//         super(props);
-
-//         // ----- STATE FOR STATEFUL COMPONENT -----
-//         this.state = {
-//             value: 0,
-//             input: ''
-//         };
-
-//         // ----- BINDING METHODS -----
-//         this.handleChange = this.handleChange.bind(this);
-//     }
-
-//     // ----- PROP TYPES -----
-//     static propTypes = {
-//         title: PropTypes.string.isRequired,
-//         value: PropTypes.number,
-//         tools: PropTypes.array
-//     }
-
-//     // ----- DEFAULT PROPS -----
-//     static defaultProps = {
-//         title: 'Title',
-//         value: 1,
-//         tools: ['react']
-//     }
-
-//     // ----- COMPONENT DID MOUNT -----
-//     componentDidMount() {
-//         // ----- CALL FOR API -----
-//         // ----- ADD LISTENERS -----
-//     }
-
-//     // ----- COMPONENT WILL UNMOUNT -----
-//     componentWillUnmount() {
-//         // ----- REMOVE LISTENERS -----
-//     }
-
-//     // ----- SHOULD COMPONENT UPDATE -----
-//     shouldComponentUpdate(nextProps, nextState) {
-//         return true;
-//     }
-
-//     // ----- METHODS -----
-//     handleChange(event) {
-//         let v = event.target.value;
-
-//         // ----- SET STATE -----
-//         this.setState((state, props) => ({
-//             value: state.value + props.value,
-//             input: v
-//         }));
-//     }
-
-//     // ----- RENDER -----
-//     render() {
-//         // ----- INLINE STYLES -----
-//         const styles = {
-//             border: "2px solid blue",
-//             fontSize: 20
-//         }
-
-//         return (
-//             <div>
-//                 <h1 className="text-primary">My component</h1>
-//                 <h2>{this.props.title + " " + this.props.value}</h2>
-//                 <h3>Tools: {this.props.tools.join(", ")}</h3>
-//                 <hr />
-//                 <input type="text" onChange={this.handleChange} style={styles}></input>
-//                 <span> {this.state.value} </span>
-//                 <hr />
-//                 <FunComponent value={1} />
-//             </div>
-//         );
-//     }
-// };
-
-
-
-
-
 // ----- RENDER COMPONENT -----
 ReactDOM.render(
-    <MyComponent
-        title='Template' value={4} tools={['jquery', 'bootstrap', 'react']} />,
+    <DrumMachine clips={clips} />,
     document.getElementById('app')
 );
 
