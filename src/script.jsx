@@ -70,11 +70,13 @@ class DrumPad extends React.Component {
         id: PropTypes.number.isRequired,
         value: PropTypes.string.isRequired,
         audioSrc: PropTypes.string.isRequired,
-        onClick: PropTypes.function
+        onClick: PropTypes.func
     };
 
     play = () => {
-        this.props.onClick();
+        this.props.onClick(this.props.id);
+        // OPTIONAL PLAYING AUDIO USING REF
+        // this.audioRef.play();
         document.getElementById(this.props.value).play();
     };
 
@@ -84,15 +86,19 @@ class DrumPad extends React.Component {
                 type="button"
                 className="drum-pad"
                 id={"drum-pad" + this.props.id}
-                onclick={this.play}
+                onClick={this.play}
             >
-                <audio id={this.props.value}>
+                <audio
+                    id={this.props.value}
+                // OPTIONAL SETTING REF FOR PLAYING AUDIO
+                //ref={(audio) => { this.audioRef = audio; }}
+                >
                     <source
                         src={this.props.audioSrc}
                         type="audio/mpeg"
                     />
                 </audio>
-            </button>
+            </button >
         );
     };
 };
@@ -116,13 +122,13 @@ class DrumMachine extends React.Component {
     };
 
     updateDisplay = (id) => {
-        this.setState({ text: this.props.clips });
+        this.setState({ text: id });
     };
 
     render() {
         return (
             <div id="drum-machine">
-                <Display text="Playing chord" />
+                <Display text={this.state.text} />
                 <div id="buttons">
                     {this.props.clips.map(clip => (
                         <DrumPad
