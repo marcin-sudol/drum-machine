@@ -74,7 +74,7 @@ $font-normal: "Montserrat", sans-serif;
           border: none;
           border-radius: 5px;
           font-size: 50px;
-          transition: background-color 0.3s;
+          transition: background-color 0.2s;
           @media (max-width: $vertical-breakdown) {
             font-size: 40px;
           }
@@ -84,7 +84,7 @@ $font-normal: "Montserrat", sans-serif;
             border: 1px solid $color-super-light;
           }
 
-          btn-active,
+          &.btn-active,
           &:hover {
             @include btn-active;
           }
