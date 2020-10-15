@@ -61,7 +61,7 @@ const clips = [
 // ----- DISPLAY COMPONENT -----
 const Display = (props) => {
     return (
-        <p id="display">{props.text}</p>
+        <p id="display">{props.text && <i className="fas fa-music"></i>} {props.text}</p>
     );
 };
 
@@ -160,15 +160,18 @@ class DrumMachine extends React.Component {
     render() {
         return (
             <div id="drum-machine">
-                <Display text={this.state.text} />
-                <div id="buttons">
-                    {this.props.clips.map(clip => (
-                        <DrumPad
-                            key={clip.id}
-                            {...clip}
-                            onClick={this.updateDisplay}
-                        />
-                    ))}
+                <header id="header">Drum Machine</header>
+                <div id="interface">
+                    <Display text={this.state.text} />
+                    <div id="buttons">
+                        {this.props.clips.map(clip => (
+                            <DrumPad
+                                key={clip.id}
+                                {...clip}
+                                onClick={this.updateDisplay}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         );
@@ -180,6 +183,6 @@ class DrumMachine extends React.Component {
 // ----- RENDER COMPONENT -----
 ReactDOM.render(
     <DrumMachine clips={clips} />,
-    document.getElementById('app')
+    document.getElementById('main-app')
 );
 

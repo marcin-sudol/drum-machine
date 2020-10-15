@@ -1,62 +1,88 @@
 // VARIABLES
-$color-light: hsl(46, 100%, 97%);
-$color-medium: hsl(38, 16%, 76%);
-$color-dark: hsl(34, 6%, 24%);
-$accent-light: hsl(17, 83%, 54%);
-$accent-dark: hsl(40, 4%, 14%);
+$color-super-light: #fffcf2;
+$color-light: #ccc5b9;
+$color-medium: #403d39;
+$color-dark: #252422;
+$accent-light: #eb5e28;
 
-$vertical-breakdown: 600px;
+$vertical-breakdown: 500px;
+
+$font-em: "Patua One", cursive;
+$font-normal: "Montserrat", sans-serif;
 
 // DEFAULT VALUES
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid;
+  font-family: $font-em;
+  // border: 1px solid;
 }
 
-main {
+#main-app {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 5px;
   min-height: 100vh;
+  background-color: $color-super-light;
 
   #drum-machine {
-    padding: 40px;
-    width: 700px;
+    width: 500px;
     max-width: 100%;
-    border-radius: 15px;
-    @media (max-width: $vertical-breakdown) {
+
+    #header {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: $color-dark;
+    }
+
+    #interface {
       padding: 10px;
-    }
-
-    #display {
-      margin-bottom: 40px;
-      padding: 20px;
-      text-align: center;
+      background-color: $color-light;
       border-radius: 10px;
-      @media (max-width: $vertical-breakdown) {
+
+      #display {
         margin-bottom: 10px;
-        padding: 10px;
-      }
-    }
-
-    #buttons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: max-content;
-      justify-content: center;
-      gap: 20px 30px;
-      @media (max-width: $vertical-breakdown) {
-        gap: 10px;
-      }
-
-      .drum-pad {
-        height: 100px;
+        height: 80px;
+        line-height: 80px;
+        background-color: $color-medium;
+        color: $color-super-light;
+        font-size: 24px;
+        text-align: center;
         border-radius: 10px;
-        @media (max-width: $vertical-breakdown) {
+        i {
+          color: $accent-light;
+        }
+      }
+
+      #buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: max-content;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+        background-color: $color-medium;
+        border-radius: 10px;
+
+        .drum-pad {
           height: 70px;
+          background-color: $color-dark;
+          color: $color-super-light;
+          border: none;
+          border-radius: 5px;
+          font-size: 50px;
+          transition: background-color 0.3s;
+          @media (max-width: $vertical-breakdown) {
+            font-size: 40px;
+          }
+
+          &:hover {
+            background-color: $accent-light;
+            border: 1px solid $color-super-light;
+          }
         }
       }
     }
