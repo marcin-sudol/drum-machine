@@ -73,7 +73,8 @@ class DrumPad extends React.Component {
         super(props);
 
         this.play = this.play.bind(this);
-        this.handleKeyPressed = this.handleKeyPressed.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
     };
 
     static propTypes = {
@@ -93,22 +94,32 @@ class DrumPad extends React.Component {
         audio.play();
     };
 
-    handleKeyPressed(event) {
+    handleKeyDown(event) {
         if (event.code === ("Key" + this.props.value)) {
             event.preventDefault();
-            document.getElementById("drum-pad" + this.props.id)
-                .click();
+            let element = document.getElementById("drum-pad" + this.props.id);
+            element.click();
+            element.classList.add('btn-active');
+        }
+    }
+
+    handleKeyUp(event) {
+        if (event.code === ("Key" + this.props.value)) {
+            let element = document.getElementById("drum-pad" + this.props.id);
+            element.classList.remove('btn-active');
         }
     }
 
     // MAYBE MOVE LISTENERS TO MAIN APP
     componentDidMount() {
-        window.addEventListener('keydown', this.handleKeyPressed);
+        window.addEventListener('keydown', this.handleKeyDown);
+        window.addEventListener('keyup', this.handleKeyUp);
     }
 
     // MAYBE MOVE LISTENERS TO MAIN APP
     componentWillUnmount() {
-        window.removeEventListener('keydown', this.andleKeyPressed);
+        window.removeEventListener('keydown', this.handleKeyDown);
+        window.removeEventListener('keyup', this.handleKeyUp);
     }
 
     render() {

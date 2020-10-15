@@ -79,9 +79,14 @@ $font-normal: "Montserrat", sans-serif;
             font-size: 40px;
           }
 
-          &:hover {
+          @mixin btn-active {
             background-color: $accent-light;
             border: 1px solid $color-super-light;
+          }
+
+          btn-active,
+          &:hover {
+            @include btn-active;
           }
         }
       }
