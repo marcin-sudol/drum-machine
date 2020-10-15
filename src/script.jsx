@@ -131,15 +131,12 @@ class DrumPad extends React.Component {
                 onClick={this.play}
             >
                 <audio
+                    className="clip"
                     id={this.props.value}
+                    src={this.props.audioSrc}
                 // OPTIONAL SETTING REF FOR PLAYING AUDIO
                 //ref={(audio) => { this.audioRef = audio; }}
-                >
-                    <source
-                        src={this.props.audioSrc}
-                        type="audio/mpeg"
-                    />
-                </audio>
+                />
                 {this.props.value}
             </button >
         );
