@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Patua One", cursive; }
+
+#main-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  min-height: 100vh;
+  background-color: #fffcf2; }
+  #main-app #drum-machine {
+    width: 500px;
+    max-width: 100%; }
+    #main-app #drum-machine #header {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #252422; }
+    #main-app #drum-machine #interface {
+      padding: 10px;
+      background-color: #ccc5b9;
+      border-radius: 10px; }
+      #main-app #drum-machine #interface #display {
+        margin-bottom: 10px;
+        height: 80px;
+        line-height: 80px;
+        background-color: #403d39;
+        color: #fffcf2;
+        font-size: 24px;
+        text-align: center;
+        border-radius: 10px; }
+        #main-app #drum-machine #interface #display i {
+          color: #eb5e28; }
+      #main-app #drum-machine #interface #buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: max-content;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+        background-color: #403d39;
+        border-radius: 10px; }
+        #main-app #drum-machine #interface #buttons .drum-pad {
+          height: 70px;
+          background-color: #252422;
+          color: #fffcf2;
+          border: none;
+          border-radius: 5px;
+          font-size: 50px;
+          transition: background-color 0.2s; }
+          @media (max-width: 500px) {
+            #main-app #drum-machine #interface #buttons .drum-pad {
+              font-size: 40px; } }
+          #main-app #drum-machine #interface #buttons .drum-pad.btn-active, #main-app #drum-machine #interface #buttons .drum-pad:hover {
+            background-color: #eb5e28;
+            border: 1px solid #fffcf2; }
+
+/*# sourceMappingURL=style.css.map */
