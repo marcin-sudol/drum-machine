@@ -108,13 +108,11 @@ class DrumPad extends React.Component {
     }
   }
 
-  // MAYBE MOVE LISTENERS TO MAIN APP
   componentDidMount() {
     window.addEventListener("keydown", this.handleKeyDown);
     window.addEventListener("keyup", this.handleKeyUp);
   }
 
-  // MAYBE MOVE LISTENERS TO MAIN APP
   componentWillUnmount() {
     window.removeEventListener("keydown", this.handleKeyDown);
     window.removeEventListener("keyup", this.handleKeyUp);
@@ -178,7 +176,7 @@ class DrumMachine extends React.Component {
   }
 }
 
-// ----- RENDER COMPONENT -----
+// ----- RENDER REACT -----
 ReactDOM.render(
   <DrumMachine clips={clips} />,
   document.getElementById("main-app")
